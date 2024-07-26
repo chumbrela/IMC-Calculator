@@ -1,31 +1,42 @@
-/*
-calculando o imc - logica
 
-solicitar o peso do usuario // input weight
-solicitar a altura do usuario // input height
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form')
+  const inputWeight = document.querySelector('#inputWeight')
+  const inputHeight = document.querySelector('#inputHeight')
+  const alertError = document.querySelector('.alert-error');
+  const modalWrapper = document.querySelector('.modal-wrapper');
+  const imcResult = document.querySelector('#imc-result');
+  const closeButton = document.querySelector('.close');
 
-validar se o valor inserido e valido. 
-se nao for dispara um alert-error "digite um valor correto"
+  const IMC = (weight, height) => {
+    return (weight / ((height / 100) ** 2)).toFixed(2);
+  }
 
-se os numeros forem validos executo o calculo do IMC // function calcIMC()
+  form.onsubmit = event => {
+    event.preventDefault();
+  
+    const weight = parseFloat(inputWeight.value);
+    const height = parseFloat(inputHeight.value);
+  
+   if(isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+   alertError.classList.add('hide')
+    return;
+   }
 
-retorna o resultado impresso na tela para usuario com a seguinte frase:
-seu imc e de ${imc}.
-*/
+  alertError.classList.remove('hide');
+  
+  const result = IMC(weight, height);
+  imcResult.textContent = `Seu IMC e de ${result}`;
 
-const form = document.querySelector('form')
-const inputWeight = document.querySelector('#weight')
-const inputHeight = document.querySelector('#height')
+  modalWrapper.classList.remove('hide');
+  }
 
+closeButton.onclick = () => {
+  modalWrapper.classList.add('hide')
+}
 
-form.onsubmit = (event) => {
-  event.preventDefault();
-
-  const weight = inputWeight.value;
-  const height = inputHeight.value;
+})
 
  
-} 
-IMC = (weight, height) => {
-  return (weight / ((height / 100) ** 2)).toFixed(2)
-}
+
+
