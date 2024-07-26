@@ -100,10 +100,15 @@ input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.modal{
+  position: relative;
+  
+}
 
 .modal-wrapper{
   position: absolute;
   inset: 0;
+
   background: rgba(0, 0, 0, 0.7);
 
   display: grid;
@@ -125,13 +130,18 @@ input[type=number]::-webkit-inner-spin-button {
   }
   button{
     border: none;
-    background-color: none;
+    background: none;
 
     position: absolute;
-    top: 0;
+    top: 1.6rem;
+    right: 1.6rem;
+  }
+  button:hover{
+    cursor: pointer;
+    opacity: 90%;
   }
 }
-.alert-error.open {
+.alert-error.hide {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
